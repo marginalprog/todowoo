@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Авторизация</title>
+</head>
+<body>
+  {% extends 'todo/base.html' %}
+  {% block content %}
+    <h1>Авторизация</h1>
+    <h2 style="color:red">{{ error }}</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type = "submit">Авторизоваться</button>
+    </form>
+  {% endblock %}
+</body>
+</html>
