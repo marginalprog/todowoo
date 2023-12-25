@@ -1,10 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
 </head>
 <body>
-$END$
+  {% if user.is_authenticated %}
+    Зарегистрирован как {{  user.username }}
+    <a href="#">Выйти</a>
+
+  {% else %}
+    <a href="#">Регистрация</a>
+    <a href="#">Логин</a>
+  {% endif %}
+  <br>
+
+
+  {% block content %} {% endblock %}
 </body>
 </html>

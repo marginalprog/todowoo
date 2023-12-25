@@ -3,14 +3,18 @@
 <head>
     <meta charset="UTF-8">
 
-    <title>signup</title>
+    <title>Регистрация</title>
 </head>
 <body>
+  {% extends 'todo/base.html' %}
+  {% block content %}
     <h1>Регистрция</h1>
+    <h2 style="color:red">{{ error }}</h2>
     <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}
         <button type = "submit">Зарегистрироваться</button>
     </form>
+  {% endblock %}
 </body>
 </html>
