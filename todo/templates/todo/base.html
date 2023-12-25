@@ -7,11 +7,16 @@
 <body>
   {% if user.is_authenticated %}
     Зарегистрирован как {{  user.username }}
-    <a href="#">Выйти</a>
+
+    <form action="{% url 'logoutuser' %}" method="POST">
+      {% csrf_token %}
+      <button type = "submit">Выйти</button>
+    </form>
+
 
   {% else %}
-    <a href="#">Регистрация</a>
-    <a href="#">Логин</a>
+    <a href="{% url 'signupuser' %}">Регистрация</a>
+    <a href="{% url 'loginuser' %}">Логин</a>
   {% endif %}
   <br>
 
