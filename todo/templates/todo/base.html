@@ -6,7 +6,12 @@
 </head>
 <body>
   {% if user.is_authenticated %}
-    Зарегистрирован как {{  user.username }}
+    <a href="{% url 'createtodo' %}">Создать задачу</a>
+    <a href="{% url 'currenttodos' %} ">Текущие задачи</a>
+    <a href="{% url 'completedtodos' %}">Выполнено</a>
+    Зарегистрирован как {{ user.username }}
+
+
 
     <form action="{% url 'logoutuser' %}" method="POST">
       {% csrf_token %}

@@ -37,9 +37,12 @@ urlpatterns = [
     # подробности задачи\изменить
     path('todo/<int:todo_pk>/', views.viewtodo, name='viewtodo'),
 
-    # задача выполнена
+    # выполненные задачи
+    path('completed/', views.completedtodos, name='completedtodos'),
+
+    # задача выполнена (действие)
     path('todo/<int:todo_pk>/complete', views.completetodo, name='completetodo'),
 
-    # задача удалена
+    # задача удалена (действие)
     path('todo/<int:todo_pk>/delete', views.deletetodo, name='deletetodo'),
 ]
