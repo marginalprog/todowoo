@@ -34,6 +34,7 @@ urlpatterns = [
     # todos
     path('current/', views.currenttodos, name='currenttodos'),
 
-
+    # подробности задачи\изменить
+    path('todo/<int:todo_pk>/', views.viewtodo, name='viewtodo'),
 
 ]
