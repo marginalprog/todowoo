@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <title>Список дел</title>
@@ -7,19 +7,50 @@
 <body>
   {% extends 'todo/base.html' %}
   {% block content %}
-    Задачи
-    <ul>
-      {% for todo in todos %}
-        <li>
-            <a href="{% url 'viewtodo' todo.id %}">
-              {% if todo.important %} <b> {% endif %}
-                {{ todo.title }}
-              {% if todo.important %} </b> {% endif %}
-              {% if todo.description %} - {{ todo.description }} {% endif %}
-            </a>
-        </li>
-     {% endfor %}
-    </ul>
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-10">
+            {% if todos %}
+            {% load users_extras %}
+                <h2>{{ todos.count }} {{ todos.count|ru_pluralize:"задача,задачи,задач"  }} </h2>
+            {% else %}
+                <h2>Текущие задачи</h2>
+            {% endif %}
+        </div>
+    </div>
+  <div class="row justify-content-center mt-5">
+      <div class="col-md-10">
+          {% if todos %}
+          <div class="list-group">
+              {% for todo in todos %}
+                <a href="{% url 'viewtodo' todo.id %}"
+                   class="list-group-item list-group-item-action
+                        {% if todo.important %}
+                            list-group-item-danger
+                        {% endif %}">
+                    {% if todo.important %}
+                        <b> {{ todo.title }} </b>
+                    {% else %}
+                        {{ todo.title }}
+                    {% endif %}
+
+                    {% if todo.description %} -
+                        {{ todo.description|truncatechars:30 }}
+                    {% endif %}
+                </a>
+            {% endfor %}
+              </div>
+          {% else %}
+            <div class="text-center">
+                <h2>Похоже, все задачи выполнены! Отличная работа.</h2>
+                <br>
+                <a role="button" class="btn btn-primary" href="{% url 'createtodo' %}">
+                    Новая задача
+                </a>
+            </div>
+          {% endif %}
+      </div>
+  </div>
   {% endblock %}
+
 </body>
 </html>
