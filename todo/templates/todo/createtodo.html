@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
+{% extends 'todo/base.html' %}
 
-    <title>Создание задачи</title>
-</head>
-<body>
-  {% extends 'todo/base.html' %}
-  {% block content %}
+{% block title %} Создание задачи {% endblock %}
+
+{% block content %}
     <div class="row justify-content-center mt-5">
         <div class="col-md-5">
             <h2>Новая задача</h2>
@@ -39,6 +34,4 @@
         </form>
     </div>
   </div>
-  {% endblock %}
-</body>
-</html>
+{% endblock %}

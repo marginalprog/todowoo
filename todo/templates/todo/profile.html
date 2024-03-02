@@ -1,0 +1,19 @@
+{% extends 'todo/base.html' %}
+
+{% block title %} Профиль {% endblock %}
+
+{% block content %}
+    <p>Вы можете <a href="{% url 'edituser' %}">изменить свой профиль</a> или <a href='#'>изменить пароль</a>.</p>
+    <h3>{{ user.get_full_name|default:"полное имя не указано"  }}</h3>
+
+    <div class="row justify-content-center mt-5">
+      <div class="col-md-10">
+          <div class="list-group">
+              <li>Псевдоним: {{ user.username }}</li>
+              <li>Расположение: {{ user.location|default:"не указано" }}</li>
+              <li>О себе: {{ user.bio|default:"не указано" }}</li>
+              <li>Дата рождения: {{ user.birth_date|default:"не указано"|date:'d.m.Y' }}</li>
+          </div>
+      </div>
+    </div>
+{% endblock %}

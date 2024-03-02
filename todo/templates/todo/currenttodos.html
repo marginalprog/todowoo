@@ -1,23 +1,21 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Список дел</title>
-</head>
-<body>
-  {% extends 'todo/base.html' %}
-  {% block content %}
+{% extends 'todo/base.html' %}
+
+{% block title %} Список дел {% endblock %}
+
+{% block content %}
     <div class="row justify-content-center mt-5">
         <div class="col-md-10">
-            {% if todos %}
-            {% load users_extras %}
-                <h2>{{ todos.count }} {{ todos.count|ru_pluralize:"задача,задачи,задач"  }} </h2>
-            {% else %}
-                <h2>Текущие задачи</h2>
-            {% endif %}
+            <div class="text-center">
+                {% if todos %}
+                {% load users_extras %}
+                    <h2>{{ todos.count }} {{ todos.count|ru_pluralize:"задача,задачи,задач"  }} </h2>
+                {% else %}
+                    <h2>Текущие задачи</h2>
+                {% endif %}
+            </div>
         </div>
     </div>
-  <div class="row justify-content-center mt-5">
+    <div class="row justify-content-center mt-5">
       <div class="col-md-10">
           {% if todos %}
           <div class="list-group">
@@ -49,8 +47,5 @@
             </div>
           {% endif %}
       </div>
-  </div>
-  {% endblock %}
-
-</body>
-</html>
+    </div>
+{% endblock %}

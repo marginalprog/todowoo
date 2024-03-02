@@ -1,18 +1,21 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Выполненные задачи</title>
-</head>
-<body>
-  {% extends 'todo/base.html' %}
-  {% block content %}
-  <div class="row justify-content-center mt-5">
-        <div class="col-md-10">
-            <h2>Выполненные задачи</h2>
+{% extends 'todo/base.html' %}
+
+{% block title %} Выполненные задачи {% endblock %}
+
+{% block content %}
+<div class="row justify-content-center mt-5">
+    <div class="col-md-10">
+        <div class="text-center">
+            {% if todos %}
+                {% load users_extras %}
+                    <h2>Выполнено {{ todos.count }} {{ todos.count|ru_pluralize:"задача,задачи,задач"  }} </h2>
+            {% else %}
+                <h2>Выполненные задачи отсутствуют</h2>
+            {% endif %}
         </div>
-  </div>
-  <div class="row justify-content-center mt-5">
+    </div>
+</div>
+<div class="row justify-content-center mt-5">
     <div class="col-md-10">
         <div class="list-group">
           {% for todo in todos %}
@@ -22,12 +25,10 @@
               {% if todo.important %} </b> {% endif %}
               {% if todo.description %} - {{ todo.description }} {% endif %}
 
-              {{ todo.date_deadline|date:'(d.m.Y H:i)' }}
+              {{ todo.date_completed|date:'(d.m.Y H:i)' }}
             </a>
          {% endfor %}
         </div>
     </div>
-  </div>
-  {% endblock %}
-</body>
-</html>
+</div>
+{% endblock %}

@@ -4,14 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <link rel="icon" type="image/x-icon"  href="{% static 'todo/favicon.ico' %}">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="icon" type="image/png"  href="{% static 'todo/logo.png' %}">
-    <title>Менеджер задач</title>
+    <link rel="stylesheet" href="{% static 'todo/style.css' %}">
+
+    <title> {% block title %} {% endblock %} </title>
 </head>
 <body>
-  <nav class="navbar navbar-expand-md navbar-light bg-warning">
+  <nav class="navbar navbar-expand-md navbar-light bg-purple">
 
     <div class="container">
       <a class="navbar-brand" href="{% url 'home' %}" width="30" height="30" class="d-inline-block align-top">
@@ -25,9 +26,17 @@
 
         {% if user.is_authenticated %}
           <div class = "container">
-            Здравствуйте, {{ user.username }}
+            Здравствуйте,
+              {% if user.first_name %}
+                {{ user.first_name }}
+              {% else %}
+                {{ user.username }}
+              {% endif %}
           </div>
           <ul class="navbar-nav mr-auto">
+            <li class="nav-item {{ current }}">
+              <a class="nav-link" href="{% url 'profileuser' %}">Профиль</a>
+            </li>
             <li class="nav-item {{ current }}">
                 <a class="nav-link" href="{% url 'currenttodos' %}">Текущие</a>
             </li>
@@ -46,7 +55,7 @@
                   <a href="#" onclick="$('#signOutBtn').click()" class="nav-link">Выйти</a>
                   <form style='display: none;' method="POST" action="{% url 'logoutuser' %}">
                       {% csrf_token %}
-                      <button id="signOutBtn" type="submit">Logout</button>
+                      <button id="signOutBtn" type="submit">Выйти</button>
                   </form>
               </li>
           {% else %}

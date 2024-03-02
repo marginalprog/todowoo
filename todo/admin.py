@@ -1,11 +1,16 @@
 from django.contrib import admin
-from .models import Todo
+from django.contrib.auth.admin import UserAdmin
+
+from .models import Todo, CustomUser
 
 
 class TodoAdmin(admin.ModelAdmin):
-    # ModelAdmin используется для кастомизации интерфейса администратора
-    # Для отображения даты создания записи
     readonly_fields = ('date_created',)
 
 
+"""class ProfileAdmin(admin.ModelAdmin):
+    list_display = ['user', 'birth_date']
+"""
+
 admin.site.register(Todo, TodoAdmin)
+admin.site.register(CustomUser, UserAdmin)

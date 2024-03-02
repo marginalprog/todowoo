@@ -1,25 +1,21 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Домашняя страница</title>
-</head>
-<body>
-  {% extends 'todo/base.html' %}
-  {% block content %}
+{% extends 'todo/base.html' %}
 
-    <div class="row justify-content-center mt-5">
-        <div class="col-md-7 text-center">
-                 <h1>Просто Ваши задачи. Вау!</h1>
-            <p>Жизнь - весёлая штука, а наши дела никогда не заканчиваются.
-                Существует миллион различных вещей, которыми можно заняться.
-                Однако наиболее ценно то, <u>чем</u> вы занимаетесь сейчас.
-                Сайт <b><i>Todo Woo</i></b> создан, чтобы помочь реализовать все
-                свои возможности и жить той жизнью, которая для Вас важнее всего.
-                Ваша организованная жизнь ждёт.</p>
-        <a role="button" class="btn btn-primary btn-lg" href="{% url 'signupuser' %}">Начать</a>
-        </div>
+{% block title %} Домашняя страница {% endblock %}
+
+{% block content %}
+
+<div class="row justify-content-center mt-5">
+    <div class="col-md-7 text-center">
+        <h1>Менеджер задач</h1>
+        <p>
+            Жизнь - весёлая штука, а наши дела никогда не заканчиваются.
+            Существует миллион различных вещей, которыми можно заняться.
+            Однако наиболее ценно то, <u>чем</u> Вы занимаетесь сейчас.
+            Сайт <b><i>Todo</i></b> создан, чтобы помочь реализовать все
+            свои возможности и жить той жизнью, которая для Вас важнее всего.
+            Ваша организованная жизнь ждёт.
+        </p>
+    <a role="button" class="btn btn-primary btn-lg" href="{% url 'signupuser' %}">Начать</a>
     </div>
-  {% endblock %}
-</body>
-</html>
+</div>
+{% endblock %}
